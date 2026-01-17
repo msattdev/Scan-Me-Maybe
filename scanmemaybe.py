@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw
 from ascii_art import LOGO
 
 def round_corners(image, radius=20):
-    """Add rounded corners to an image"""
+    # Add rounded corners to an image
     # Create a mask with rounded corners
     mask = Image.new('L', image.size, 0)
     draw = ImageDraw.Draw(mask)
@@ -16,7 +16,7 @@ def round_corners(image, radius=20):
     return output
 
 def generate_qr_code(data, filename, fill_color="black", back_color="white", box_size=10, border=2):
-    """Generate a QR code with rounded corners"""
+    # Generate a QR code with rounded corners
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_H,  # High error correction
@@ -28,13 +28,13 @@ def generate_qr_code(data, filename, fill_color="black", back_color="white", box
     img = qr.make_image(fill_color=fill_color, back_color=back_color).convert('RGB')
     
     # Add rounded corners
-    img = round_corners(img, radius=15)
+    img = round_corners(img, radius=20)
     
     img.save(filename)
     return img
 
 def generate_styled_qr_code(data, filename, fill_color="#1F51BA", back_color="#FFFFFF"):
-    """Generate a modern styled QR code with rounded corners and padding"""
+    # Generate a modern styled QR code with rounded corners and padding
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -47,8 +47,8 @@ def generate_styled_qr_code(data, filename, fill_color="#1F51BA", back_color="#F
     
     # Add rounded corners
     img = round_corners(img, radius=20)
-    
-    # Add elegant padding/border for modern look
+
+    # Add padding/border for modern look
     padding = 30
     new_size = (img.size[0] + 2*padding, img.size[1] + 2*padding)
     new_img = Image.new('RGBA', new_size, (255, 255, 255, 0))

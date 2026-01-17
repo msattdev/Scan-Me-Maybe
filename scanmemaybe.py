@@ -13,7 +13,7 @@ def generate_qr_code(data, filename):
     img.save(filename)
 
 if __name__ == "__main__":
-    data = "https://www.example.com"
+    data = input("Enter the data to encode in the QR code: ")
     filename = "qrcode.png"
     generate_qr_code(data, filename)
     print(f"QR code generated and saved as {filename}")
